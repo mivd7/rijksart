@@ -17,16 +17,16 @@ class Painting extends Component {
 
   render() {
     console.log(this.props)
-    const collection = this.props.collection
+    const {collection, painting} = this.props
     const webImage = this.props.painting.webImage
     
     return (
-      <div>{!webImage && <p>loading image</p>}
+      <div>{!webImage && <p>loading painting</p>}
        {webImage && <div><img src={webImage.url} 
-                                            alt="more images" 
-                                            style={{maxWidth: 300, maxHeight: 300}}/>
-            <h1>{this.props.painting.title} by {this.props.painting.principalMaker} </h1>
-            <p>{this.props.painting.plaqueDescriptionDutch}</p>
+                              alt="more images" 
+                              style={{maxWidth: 300, maxHeight: 300}}/>
+            <h1>{painting.title} by {painting.principalMaker} </h1>
+            <p>{painting.plaqueDescriptionDutch}</p>
             <Carousel images={collection} />
             </div>}
       </div>
