@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {loadCollectionPaintings} from '../actions/collection'
-import ArtGallery from './ArtGallery'
+
+const removeCulturePrefix = (id) => {
+  var arr = Array.from(id)
+  return id.slice(3, arr.length)
+}
+
 
 class Carousel extends Component {
   componentWillMount() {
-    this.props.loadCollectionPaintings(this.props.match.params.id)
+    this.props.loadCollectionPaintings(removeCulturePrefix(this.props.match.params.id))
   }
   render() {
-    console.log(this.props)
-    const painting = this.props.painting
+    console.log(this.props.painting)
     return (
       <div>
-        HERE BE PAINTING
+      
       </div>
     )
   }

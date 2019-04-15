@@ -13,10 +13,10 @@ const setCollectionInfo = (collection) => {
   }
 }
 
-const setImageCarousel = (paintings) => {
+const setImageCarousel = (painting) => {
   return {
     type: SET_IMAGE_CAROUSEL,
-    payload: paintings
+    payload: painting
   }
 }
 
@@ -29,11 +29,9 @@ export const loadCollectionInfo = () =>
       .catch(err => console.log(err))
 }
 
-export const loadCollectionPaintings = (id) => (dispatch, getState) => {
-  const state = getState()
-  if (state && state.id === id) return
+export const loadCollectionPaintings = (id) => (dispatch) => {
 
-  request(`${baseUrl}/${id}?key=${process.env.REACT_APP_API_KEY}&format=json`)
+  request(`https://www.rijksmuseum.nl/api/nl/collection/SK-C-5?key=${process.env.REACT_APP_API_KEY}&format=json`)
   .then(response => {
       dispatch(setImageCarousel(response.body))
     })
