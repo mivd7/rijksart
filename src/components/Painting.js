@@ -12,11 +12,9 @@ const removeCulturePrefix = (id) => {
 class Painting extends Component {
   componentDidMount() {
     this.props.loadPaintingById(removeCulturePrefix(this.props.match.params.id))
-  }
-
-  componentDidUpdate() {
     this.props.loadCollectionInfo()
   }
+  
   render() {
     console.log(this.props)
     const collection = this.props.collection

@@ -8,8 +8,8 @@ const Carousel = (props) => {
     {props.images && props.images.map(image =>
         <ul >
           <li key={image.id}>
-            <Link to={`/gallery/${image.id}`} imageet={props.image} >
-            <img src={image.webImage.url} alt="image" style={{width: "25%", height: "25%"}}/>
+            <Link to={`/gallery/${image.id}`} >
+            <img src={image.webImage.url} alt={image.title} style={{width: "25%", height: "25%"}}/>
             <p>{image.title} door {image.principalOrFirstMaker}</p>
             </Link>
           </li>
