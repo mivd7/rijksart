@@ -5,7 +5,7 @@ export default function (state = [], action = {}) {
   case SET_COLLECTION_INFO:
     return action.payload.artObjects
   case SET_IMAGE_CAROUSEL:
-    return action.payload.artObjects.map(object => object.webImage)
+    return action.payload
   default:
     return state
   }

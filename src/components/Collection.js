@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {loadCollectionInfo} from '../actions/collection';
-import Carousel from './Carousel'
 
 class Collection extends Component {
   componentDidMount() {
@@ -17,8 +17,15 @@ class Collection extends Component {
     return (
       <div>
         {!this.props.collection && <p>fasten seat belts</p>}
-        {this.props.collection && 
-        <Carousel paintingIds={collection.id} />}
+        {this.props.collection && collection.map(collection =>
+        <ul key={collection.id}>
+          <li>
+            <Link to={`/gallery/${collection.id}`}>
+            <img src={collection.webImage.url} alt="painting" style={{width: "50%", height: "50%"}}/>
+            <p>{collection.title} door {collection.principalOrFirstMaker}</p>
+            </Link>
+          </li>
+        </ul>)}
       </div>
     )
   }

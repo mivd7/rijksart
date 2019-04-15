@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-// import {Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import store from './store'
 import './App.css';
-import ArtGallery from './components/ArtGallery';
+import Collection from './components/Collection'
+import Carousel from './components/Carousel'
 
 class App extends Component {
   render() {
@@ -12,7 +12,8 @@ class App extends Component {
         <Provider store={store}>
           <div className="App">
             <header className="App-header">
-              <ArtGallery/>
+            <Route path="/" exact component={Collection} />
+            <Route exact path="/gallery/:id" component={Carousel} />            
             </header>
           </div>
         </Provider>
