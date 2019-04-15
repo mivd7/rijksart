@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {loadArt} from '../actions/art';
 import Painting from './Painting'
-import Carousel from './Carousel';
+import Collection from './Collection';
 
 class ArtGallery extends Component {
   componentDidMount() {
@@ -20,7 +20,7 @@ class ArtGallery extends Component {
         <Painting />
         <h2>{art.title}</h2>
         <p>{art.plaqueDescriptionDutch}</p>
-        <Carousel/>
+        <Collection/>
       </div>
     )
   }
