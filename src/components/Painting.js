@@ -14,7 +14,7 @@ class Painting extends Component {
     this.props.loadPaintingById(removeCulturePrefix(this.props.match.params.id))
     this.props.loadCollectionInfo()
   }
-  
+
   render() {
     console.log(this.props)
     const collection = this.props.collection
@@ -26,7 +26,7 @@ class Painting extends Component {
                                             alt="more images" 
                                             style={{maxWidth: 300, maxHeight: 300}}/>
             <h1>{this.props.painting.title} by {this.props.painting.principalMaker} </h1>
-            <p>{this.props.painting.description}</p>
+            <p>{this.props.painting.plaqueDescriptionDutch}</p>
             <Carousel images={collection} />
             </div>}
       </div>
@@ -36,7 +36,6 @@ class Painting extends Component {
 
 const mapStateToProps = (state) => ({
   painting: state.painting,
-  webImage: state.painting.webImage,
   collection: state.collection
 })
 
