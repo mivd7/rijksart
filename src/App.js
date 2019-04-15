@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'
 import store from './store'
 import './App.css';
 import Collection from './components/Collection'
-import Carousel from './components/Carousel'
+import Painting from './components/Painting'
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
             <Route path="/" exact component={Collection} />
-            <Route exact path="/gallery/:id" component={Carousel} />            
+            <Route exact path="/gallery/:id" component={Painting} />            
             </header>
           </div>
         </Provider>
