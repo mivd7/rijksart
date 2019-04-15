@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {loadCollectionPaintings} from '../actions/collection'
+import {loadCollectionInfo} from '../actions/collection'
+import {loadPaintingById} from '../actions/painting'
+import Carousel from './Carousel'
 
 const removeCulturePrefix = (id) => {
   var arr = Array.from(id)
@@ -9,19 +11,25 @@ const removeCulturePrefix = (id) => {
 
 class Painting extends Component {
   componentDidMount() {
-    //hard-coded for now; later: this.props.match.params.id
-    this.props.loadCollectionPaintings(removeCulturePrefix(this.props.match.params.id))
+    this.props.loadPaintingById(removeCulturePrefix(this.props.match.params.id))
+  }
+
+  componentDidUpdate() {
+    this.props.loadCollectionInfo()
   }
   render() {
     console.log(this.props)
-    const painting = this.props.painting.webImage
+    const collection = this.props.collection
+    const webImage = this.props.painting.webImage
+    
     return (
-      <div>{!painting && <p>loading painting</p>}
-       {painting && <div key={painting.guid}><img src={painting.url} 
+      <div>{!webImage && <p>loading image</p>}
+       {webImage && <div><img src={webImage.url} 
                                             alt="more images" 
                                             style={{maxWidth: 300, maxHeight: 300}}/>
             <h1>{this.props.painting.title} by {this.props.painting.principalMaker} </h1>
             <p>{this.props.painting.description}</p>
+            <Carousel images={collection} />
             </div>}
       </div>
     )
@@ -29,7 +37,9 @@ class Painting extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  painting: state.collection,
+  painting: state.painting,
+  webImage: state.painting.webImage,
+  collection: state.collection
 })
 
-export default connect(mapStateToProps, { loadCollectionPaintings })(Painting)
+export default connect(mapStateToProps, { loadPaintingById, loadCollectionInfo })(Painting)

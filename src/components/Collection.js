@@ -18,10 +18,10 @@ class Collection extends Component {
       <div>
         {!this.props.collection && <p>fasten seat belts</p>}
         {this.props.collection && collection.map(collection =>
-        <ul key={collection.id}>
-          <li>
-            <Link to={`/gallery/${collection.id}`}>
-            <img src={collection.webImage.url} alt="painting" style={{width: "50%", height: "50%"}}/>
+        <ul >
+          <li key={collection.id}>
+            <Link to={`/gallery/${collection.id}`}  >
+            <img src={collection.webImage.url} alt="painting" style={{width: "25%", height: "25%"}}/>
             <p>{collection.title} door {collection.principalOrFirstMaker}</p>
             </Link>
           </li>

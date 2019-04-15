@@ -1,29 +1,20 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {loadCollectionPaintings} from '../actions/collection'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-const removeCulturePrefix = (id) => {
-  var arr = Array.from(id)
-  return id.slice(3, arr.length)
+const Carousel = (props) => {
+  console.log(props)
+  return (<div>
+    {!props.images && <div>starting carousel...</div>}
+    {props.images && props.images.map(image =>
+        <ul >
+          <li key={image.id}>
+            <Link to={`/gallery/${image.id}`} imageet={props.image} >
+            <img src={image.webImage.url} alt="image" style={{width: "25%", height: "25%"}}/>
+            <p>{image.title} door {image.principalOrFirstMaker}</p>
+            </Link>
+          </li>
+        </ul>)}
+  </div>)
 }
 
-
-class Carousel extends Component {
-  componentWillMount() {
-    this.props.loadCollectionPaintings(removeCulturePrefix(this.props.match.params.id))
-  }
-  render() {
-    console.log(this.props.painting)
-    return (
-      <div>
-      
-      </div>
-    )
-  }
-}
-
-const mapStateToProps = (state) => ({
-  painting: state.painting,
-})
-
-export default connect(mapStateToProps, { loadCollectionPaintings })(Carousel)
+export default Carousel
